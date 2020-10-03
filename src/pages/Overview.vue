@@ -187,6 +187,7 @@ Vue.use(VueGoogleMaps, {
   load: {
     key: API_KEY,
   },
+  installComponents:true
 });
 var location={
   'coords':{

@@ -14,18 +14,33 @@
               <gmap-map
                 id="map"
                 :center="myCoords"
-                :zoom="13"
+                :zoom="12"
                 :options="options"
                 map-type-id="terrain"
                 ref="mapRef"
               >
-                <div v-for="location in locations">
+                <!-- <div v-for="location in locations">
                   <gmap-marker
                     :position="location.coords"
                     icon="https://www.flaticon.com/svg/static/icons/svg/394/394631.svg"
                   >
                   </gmap-marker>
-                </div>
+                </div> -->
+                <gmap-polygon
+                  :key="index"
+                  v-for="(m, index) in layers"
+                  :paths="m.paths"
+                  @click="toggleInfoWindow(m, index)"
+                >
+                </gmap-polygon>
+
+                <gmap-info-window
+                  :position="infoWindow.pos"
+                  :opened="infoWindow.open"
+                  @closeclick="infoWindow.open = false"
+                >
+                  <div v-html="infoWindow.template"></div>
+                </gmap-info-window>
               </gmap-map>
             </template>
             <template slot="footer">
@@ -50,6 +65,7 @@ Vue.use(VueGoogleMaps, {
   load: {
     key: API_KEY,
   },
+  installComponents: true,
 });
 var location = {
   coords: {
@@ -61,13 +77,48 @@ var location = {
 export default {
   data() {
     return {
-      fireData: null,
-      locations: null,
+      paths: [
+        [
+          { lng: 142.22900390624997, lat: -38.59970036588819 },
+          { lng: 147.5244140625, lat: -38.59970036588819 },
+          { lng: 147.5244140625, lat: -35.97800618085566 },
+          { lng: 142.22900390624997, lat: -35.97800618085566 },
+          { lng: 142.22900390624997, lat: -38.59970036588819 },
+        ],
+      ],
+      layers: [
+        {
+          paths: [
+            [
+              { lng: 142.22900390624997, lat: -38.59970036588819 },
+              { lng: 147.5244140625, lat: -38.59970036588819 },
+              { lng: 147.5244140625, lat: -35.97800618085566 },
+              { lng: 142.22900390624997, lat: -35.97800618085566 },
+              { lng: 142.22900390624997, lat: -38.59970036588819 },
+            ],
+          ],
+          desc: "Lulwa ho ke?",
+          options: {
+            fillColor: "#570188",
+          },
+        },
+      ],
+      infoWindow: {
+        pos: {
+          lat: 0,
+          lng: 0,
+        },
+        open: false,
+        template:''
+      },
       myCoords: {
         lng: 0,
         lat: 0,
         // lat: 0,
         // lng: 0,
+      },
+      polyOptions: {
+        fillColor: "#FF0000",
       },
       options: {
         styles: [
@@ -133,6 +184,7 @@ export default {
       },
       editTooltip: "Edit Task",
       deleteTooltip: "Remove",
+      currentMidx:null
     };
   },
 
@@ -153,11 +205,11 @@ export default {
                 type: "Polygon",
                 coordinates: [
                   [
-                    [142.22900390624997, -38.59970036588819],
-                    [147.5244140625, -38.59970036588819],
-                    [147.5244140625, -35.97800618085566],
-                    [142.22900390624997, -35.97800618085566],
-                    [142.22900390624997, -38.59970036588819],
+                    { lat: 142.22900390624997, lng: -38.59970036588819 },
+                    { lat: 147.5244140625, lng: -38.59970036588819 },
+                    { lat: 147.5244140625, lng: -35.97800618085566 },
+                    { lat: 142.22900390624997, lng: -35.97800618085566 },
+                    { lat: 142.22900390624997, lng: -38.59970036588819 },
                   ],
                 ],
               },
@@ -187,20 +239,48 @@ export default {
         },
       },
       {
-        coords:{lat: -37.813211,
-        lng: 144.943005}
+        coords: { lat: -37.813211, lng: 144.943005 },
       },
       {
-       coords: {lat: -37.83755,
-        lng: 144.945494}
+        coords: { lat: -37.83755, lng: 144.945494 },
       },
     ];
     this.myCoords = this.fireData[0].coords;
     this.locations = this.fireData;
   },
-  // methods:{
+  methods: {
+    toggleInfoWindow: function (marker, idx) {
+      this.infoWindow.pos = marker.paths[0][0];
+      this.infoWindow.template = this.getInfoWindowContent(marker);
 
-  // }
+      //check if its the same marker that was selected if yes toggle
+      if (this.currentMidx == idx) {
+        this.infoWindow.open = !this.infoWindow.open;
+      }
+      //if different marker set infowindow to open and reset current marker index
+      else {
+        this.infoWindow.open = true;
+        this.currentMidx = idx;
+      }
+    },
+
+    getInfoWindowContent: function (marker) {
+      return `<card>
+  <div>
+    <div >
+      <div>
+        <p>Zone Level</p>
+      </div>
+    </div>
+    <div>
+      ${marker.desc}
+      <br>
+
+    </div>
+  </div>
+</card>`;
+    },
+  },
 };
 </script>
 <style>
