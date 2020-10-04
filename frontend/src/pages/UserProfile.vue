@@ -31,6 +31,7 @@
                   :key="index"
                   v-for="(m, index) in layers"
                   :paths="m.paths"
+                  :options="m.options"
                   @click="toggleInfoWindow(m, index)"
                 >
                 </gmap-polygon>
@@ -91,16 +92,18 @@ export default {
         {
           paths: [
             [
-              { lng: 142.22900390624997, lat: -38.59970036588819 },
-              { lng: 147.5244140625, lat: -38.59970036588819 },
-              { lng: 147.5244140625, lat: -35.97800618085566 },
-              { lng: 142.22900390624997, lat: -35.97800618085566 },
-              { lng: 142.22900390624997, lat: -38.59970036588819 },
+              { lng: 144.98382568359375, lat: -37.82117524901673 },
+              { lng: 145.0044250488281, lat: -37.81303878836988 },
+              { lng: 144.98348236083984, lat: -37.805850835522044 },
+              { lng: 144.9558448791504, lat: -37.8127675575702 },
+              { lng:144.9433135986328, lat: -37.82619228603734 },
+              { lng:144.95567321777344, lat: -37.82809053542981 },
+              { lng:144.98382568359375, lat: -37.82117524901673 },
             ],
           ],
-          desc: "Lulwa ho ke?",
+          desc: "Day 1 Prediction. Area = x sq.km <br /> This is hardcoded data, Melbourne is not on fire!",
           options: {
-            fillColor: "#570188",
+            fillColor: "#FF1234",
           },
         },
       ],
@@ -120,6 +123,7 @@ export default {
       },
       polyOptions: {
         fillColor: "#FF0000",
+        strokeColor: "rgba(0,0,0,0)"
       },
       options: {
         styles: [
@@ -270,7 +274,7 @@ export default {
   <div>
     <div >
       <div>
-        <p>Zone Level</p>
+        <p>Predicted Zone</p>
       </div>
     </div>
     <div>
