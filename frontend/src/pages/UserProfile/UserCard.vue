@@ -10,19 +10,19 @@
         <a href="#">
           <img
             class="avatar"
-            src="https://www.flaticon.com/svg/static/icons/svg/855/855093.svg"
+            src="https://www.flaticon.com/svg/static/icons/svg/2950/2950764.svg"
             alt="..."
           />
-          <h3 class="title">We are all in this, together!</h3>
+          <h3 class="title" style="color:#fff">We are all in this, together!</h3>
           <h2 class="title">
-            <small>Contact</small><br /><br />
-            Vaishu
+            <small>Please contact</small><br /><br />
+            <span style="color:#fff"><b>Fire Buster</b></span>
           </h2>
         </a>
 
       <h3 class ="title" style="color: #fff">
         <small>Call them at</small> <br />
-        +61 4xx xxx xxx
+      +61 400 000 000
       </h3>
       </div>
       <div slot="footer" class="text-center d-flex justify-content-center">
@@ -32,6 +32,7 @@
   </card>
 </template>
 <script>
+
 import Card from "src/components/Cards/Card.vue";
 export default {
   components: {

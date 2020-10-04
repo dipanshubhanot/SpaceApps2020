@@ -13,10 +13,10 @@
         </a>
       </div>
 
-      <slot name="content"></slot>
+      <!-- <slot name="content"></slot> -->
       <ul class="nav nav-main__links">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <slot>
+        <slot>npm 
           <sidebar-link v-for="(link,index) in sidebarLinks"
                         :key="link.name + index"
                         :to="link.path"

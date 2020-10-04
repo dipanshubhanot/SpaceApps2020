@@ -27,7 +27,7 @@
           <button
             type="submit"
             class="btn btn-danger btn-fill float-right"
-            @click.prevent="updateProfile"
+            @click="notifyVue('top', 'center')"
           >
             Send Request for a Volunteer
           </button>
@@ -62,7 +62,7 @@
           <button
             type="submit"
             class="btn btn-warning btn-fill float-right"
-            @click.prevent="updateProfile"
+            @click="notifyVue('top', 'center')"
           >
             Volunteer as Tribute
           </button>
@@ -81,23 +81,22 @@ export default {
   },
   data() {
     return {
-      user: {
-        company: "Light dashboard",
-        username: "michael23",
-        email: "",
-        firstName: "Mike",
-        lastName: "Andrew",
-        address: "Melbourne, Australia",
-        city: "melbourne",
-        country: "Australia",
-        postalCode: "",
-        aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`,
+      type: ["", "info", "success", "warning", "danger"],
+      notifications: {
+        topCenter: false,
       },
     };
   },
   methods: {
-    updateProfile() {
-      alert("Your data: " + JSON.stringify(this.user));
+    notifyVue(verticalAlign, horizontalAlign) {
+      const color = Math.floor(Math.random() * 4 + 1);
+      this.$notifications.notify({
+        message: `Your request has been recieved. Kindly Monitor the Section on the Right.`,
+        icon: "nc-icon nc-notes",
+        horizontalAlign: horizontalAlign,
+        verticalAlign: verticalAlign,
+        type: this.type[color],
+      });
     },
   },
 };
