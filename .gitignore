@@ -1,21 +1,21 @@
-.DS_Store
-node_modules/
-dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-test/unit/coverage
+frontend/.DS_Store
+frontend/node_modules/
+frontend/dist/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/test/unit/coverage
 
-src/pages/Maps/API_KEY.js
-.firebase
-firebase.json
-firestore.indexes.json
-firestore.rules
-.firebaserc
+frontend/src/pages/Maps/API_KEY.js
+frontend/.firebase
+frontend/firebase.json
+frontend/firestore.indexes.json
+frontend/firestore.rules
+frontend/.firebaserc
 
 # Editor directories and files
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+frontend/.idea
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
