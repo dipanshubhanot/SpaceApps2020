@@ -11,10 +11,10 @@
         <p>Simulate Fire Spread</p>
       </sidebar-link>
       <sidebar-link to="/admin/table-list">
-        <i class="nc-icon nc-cctv"></i>
-        <p>Track Impact</p>
+        <i class="nc-icon nc-support-17"></i>
+        <p>Emergency Support</p>
       </sidebar-link>
-      <sidebar-link to="/admin/typography">
+      <!-- <sidebar-link to="/admin/typography">
         <i class="nc-icon nc-paper-2"></i>
         <p>Typography</p>
       </sidebar-link>
@@ -29,7 +29,7 @@
       <sidebar-link to="/admin/notifications">
         <i class="nc-icon nc-bell-55"></i>
         <p>Notifications</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <template slot="bottom-links">
         <!-- <sidebar-link class="active"
@@ -41,8 +41,6 @@
       </template>
     </side-bar>
     <div class="main-panel">
-      <top-navbar></top-navbar>
-
       <dashboard-content @click="toggleSidebar">
 
       </dashboard-content>

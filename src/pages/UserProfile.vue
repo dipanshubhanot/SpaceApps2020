@@ -18,6 +18,7 @@
                 :options="options"
                 map-type-id="terrain"
                 ref="mapRef"
+                @click="mark"
               >
                 <!-- <div v-for="location in locations">
                   <gmap-marker
@@ -280,8 +281,13 @@ export default {
   </div>
 </card>`;
     },
+    mark: function(event){
+    console.log(event.latLng.lat());
+    console.log(event.latLng.lng());
+  }
   },
 };
+  
 </script>
 <style>
 #map {
