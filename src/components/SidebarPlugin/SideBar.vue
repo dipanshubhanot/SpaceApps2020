@@ -6,10 +6,10 @@
     <div class="sidebar-wrapper">
       <div class="logo">
         <a href="#" class="simple-text logo__container">
-            <div class="logo-img">
-                <img src="img/vue-logo.png" alt="">
+            <div>
+                <img src="img/fireless-logo-white.png" width="200px" alt="">
+                <h6 class="title"> Live Fearless</h6>
             </div>
-          {{title}}
         </a>
       </div>
 
